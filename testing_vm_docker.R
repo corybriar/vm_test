@@ -1,3 +1,4 @@
+# Load required Packages
 if (!require("pacman")) install.packages("pacman")
 pacman::p_load(sf, tidyverse, lwgeom, maps, mapdata, 
                spData, tigris, tmap, tmaptools, tidyr, 
@@ -5,5 +6,20 @@ pacman::p_load(sf, tidyverse, lwgeom, maps, mapdata,
                parallel, future, future.apply, furrr, 
                RhpcBLASctl, googleComputeEngineR, tictoc, install = T)
 
-# grab shapefile from NEXUS lanes project
+# Grab shapefile from NEXUS lanes project
 counties <- st_read("counties.shp")
+
+# Expensive procedure: create map of US from county Geometries 
+tic()
+US_base <- st_union(counties$geometry)  # 86.774 seconds
+toc()
+
+
+
+
+
+
+
+
+
+
